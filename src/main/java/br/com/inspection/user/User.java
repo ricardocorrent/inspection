@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -56,6 +57,10 @@ public class User implements UserDetails, Serializable {
             }
     )
     private List<Permission> permissions;
+
+    private OffsetDateTime createdAt;
+
+    private OffsetDateTime updatedAt;
 
     public List<String> getRoles() {
         return permissions
