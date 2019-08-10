@@ -1,0 +1,15 @@
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/exception/RequestException.java
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/user/UserService.java
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/Application.java
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/config/SecurityConfig.java
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/config/WebConfig.java
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/user/User.java
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/exception/InvalidJwtAuthenticationException.java
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/exception/RegisterNotFoundException.java
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/auth/AuthController.java
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/adapter/DozerAdapter.java
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/permission/PermissionRepository.java
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/permission/Permission.java
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/exception/ExceptionResponse.java
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/exception/handler/CustomizedResponseEntityExceptionHandler.java
+/home/ricardocorrent/CODE/inspection/src/main/java/br/com/inspection/user/UserRepository.java

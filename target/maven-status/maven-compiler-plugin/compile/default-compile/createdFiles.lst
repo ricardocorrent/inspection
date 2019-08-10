@@ -1,0 +1,15 @@
+br/com/inspection/exception/handler/CustomizedResponseEntityExceptionHandler.class
+br/com/inspection/user/UserService.class
+br/com/inspection/adapter/DozerAdapter.class
+br/com/inspection/Application.class
+br/com/inspection/config/WebConfig.class
+br/com/inspection/exception/InvalidJwtAuthenticationException.class
+br/com/inspection/permission/PermissionRepository.class
+br/com/inspection/user/User.class
+br/com/inspection/permission/Permission.class
+br/com/inspection/exception/RequestException.class
+br/com/inspection/config/SecurityConfig.class
+br/com/inspection/auth/AuthController.class
+br/com/inspection/user/UserRepository.class
+br/com/inspection/exception/ExceptionResponse.class
+br/com/inspection/exception/RegisterNotFoundException.class
