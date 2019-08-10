@@ -1,4 +1,4 @@
-package com.rcorrent.inspection;
+package br.com.inspection;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
