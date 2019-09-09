@@ -5,8 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import java.util.UUID;
 
+@ControllerAdvice
 @CrossOrigin
 @RestController
 @RequestMapping("/api/tag")
@@ -20,7 +22,7 @@ public class TagController {
     }
 
     @PostMapping
-    private ResponseEntity<?> insert(@RequestBody final TagVO tagVO) {
+    private ResponseEntity<?> insert(@RequestBody @Valid final TagVO tagVO) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(tagService.insert(tagVO));
@@ -53,5 +55,8 @@ public class TagController {
                 .status(HttpStatus.NO_CONTENT)
                 .build();
     }
+
+
+
 
 }
