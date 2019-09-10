@@ -1,11 +1,15 @@
 package br.com.inspection.tag;
 
+import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import java.util.UUID;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @CrossOrigin
 @RestController
@@ -28,12 +32,14 @@ public class TagController {
 
     @GetMapping(path = "/{id}", produces = {"application/json", "application/xml"})
     private ResponseEntity<?> getTagById(@PathVariable final UUID id) {
-        return ResponseEntity.ok(tagService.findById(id));
+        TagVO tagVO = tagService.findById(id);
+        tagVO.add(linkTo(methodOn(TagController.class).getTagById(id)).withSelfRel());
+        return ResponseEntity.ok(tagVO);
     }
 
     @PutMapping(path = "/{id}")
     private ResponseEntity<?> update(@PathVariable final UUID id, @RequestBody final TagVO tagVO) {
-        tagVO.setId(id);
+        tagVO.setKey(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(tagService.update(tagVO));
