@@ -1,5 +1,6 @@
 package br.com.inspection.tag;
 
+import br.com.inspection.persistence.model.Id;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -11,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -30,6 +33,15 @@ public class TagController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(tagService.insert(tagVO));
+    }
+
+    @PostMapping(path = "batch-insert", produces = {"application/json", "application/xml"})
+    private ResponseEntity<?> batchInsert(@RequestBody final List<TagVO> tagVOList) {
+        final List<TagVO> tagVOS = this.tagService.batchIsert(tagVOList);
+        final List<Id> idList = tagVOS.stream().map(tag -> new Id(tag.getId())).collect(Collectors.toList());
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(idList);
     }
 
     @GetMapping(path = "/{id}", produces = {"application/json", "application/xml"})

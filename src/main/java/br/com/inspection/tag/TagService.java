@@ -10,6 +10,8 @@ import javax.inject.Inject;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class TagService {
@@ -78,4 +80,11 @@ public class TagService {
         tagFromDb.setUpdatedAt(OffsetDateTime.now());
     }
 
+    public List<TagVO> batchIsert(final List<TagVO> tagVOList) {
+        final List<Tag> tags = DozerAdapter.parseListObjects(tagVOList, Tag.class);
+        tags.forEach(this::doGenerateInsertValues);
+
+        final List<Tag> collect = tags.stream().map(tag -> this.tagRepository.save(tag)).collect(Collectors.toList());
+        return DozerAdapter.parseListObjects(collect, TagVO.class);
+    }
 }
