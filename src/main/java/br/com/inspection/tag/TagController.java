@@ -39,7 +39,7 @@ public class TagController {
             setUpdatedAt(OffsetDateTime.now());
         }};
         tagVO.add(linkTo(TagController.class).withRel("tag"));
-        tagVO.add(linkTo(methodOn(TagController.class).list()).withRel("memberships"));
+        //tagVO.add(linkTo(methodOn(TagController.class).list()).withRel("memberships"));
         tagVO.add(linkTo(methodOn(TagController.class).getTagById(id)).withSelfRel());
 
         //tagVO.add(linkTo(methodOn(TagController.class)).withRel("tag"));
