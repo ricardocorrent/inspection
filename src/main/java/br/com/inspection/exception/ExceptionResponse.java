@@ -1,13 +1,8 @@
 package br.com.inspection.exception;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.io.Serializable;
 import java.util.Date;
 
-@Getter
-@Setter
 public class ExceptionResponse implements Serializable {
 
     private Date timestamp;
@@ -21,4 +16,27 @@ public class ExceptionResponse implements Serializable {
         this.details = details;
     }
 
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(final Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(final String message) {
+        this.message = message;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(final String details) {
+        this.details = details;
+    }
 }

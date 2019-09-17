@@ -25,7 +25,7 @@ public class TagService {
 
     public TagVO update(final TagVO tagVO) {
         final Tag tagFromDb = this.tagRepository
-                .findById(tagVO.getId()).orElse(null);
+                .findById(tagVO.getKey()).orElse(null);
 
         final Tag tag = DozerAdapter.parseObject(tagVO, Tag.class);
 
