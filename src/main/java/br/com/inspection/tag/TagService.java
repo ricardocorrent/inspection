@@ -2,6 +2,8 @@ package br.com.inspection.tag;
 
 import br.com.inspection.adapter.DozerAdapter;
 import br.com.inspection.exception.RegisterNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -51,8 +53,18 @@ public class TagService {
                         .orElseThrow(RegisterNotFoundException::new), TagVO.class);
     }
 
-    public List<TagVO> list() {
-        return DozerAdapter.parseListObjects((List<Tag>) tagRepository.findAll(), TagVO.class);
+    public Page<TagVO> list(final Pageable pageable) {
+        final Page<Tag> page = tagRepository.findAll(pageable);
+        return page.map(this::convertToTagVO);
+    }
+
+    private TagVO convertToTagVO(final Tag tag) {
+        return DozerAdapter.parseObject(tag, TagVO.class);
+    }
+
+    public Page<TagVO> findTagByTitle(final String title, final Pageable pageable) {
+        final Page<Tag> page = tagRepository.findTagByTitle(title, pageable);
+        return page.map(this::convertToTagVO);
     }
 
     private void doGenerateInsertValues(final Tag tag) {
