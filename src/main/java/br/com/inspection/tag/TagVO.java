@@ -1,17 +1,20 @@
 package br.com.inspection.tag;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
-@JsonPropertyOrder({"key", "title"})
+@JsonPropertyOrder({"id", "title", "createdAt", "updatedAt"})
 public class TagVO extends ResourceSupport implements Serializable {
 
     @Mapping("id")
+    @JsonProperty("id")
     private UUID key;
 
     private String title;
@@ -50,5 +53,22 @@ public class TagVO extends ResourceSupport implements Serializable {
 
     public void setUpdatedAt(final OffsetDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TagVO)) return false;
+        if (!super.equals(o)) return false;
+        final TagVO tagVO = (TagVO) o;
+        return getKey().equals(tagVO.getKey()) &&
+                getTitle().equals(tagVO.getTitle()) &&
+                getCreatedAt().equals(tagVO.getCreatedAt()) &&
+                getUpdatedAt().equals(tagVO.getUpdatedAt());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getKey(), getTitle(), getCreatedAt(), getUpdatedAt());
     }
 }

@@ -1,11 +1,9 @@
 package br.com.inspection.tag;
 
-import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.inject.Inject;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -14,7 +12,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/api/tag" , produces = "application/hal+json")
+@RequestMapping(value = "/api/tag")
 public class TagController {
 
     private final TagService tagService;
@@ -31,23 +29,17 @@ public class TagController {
     }
 
     @GetMapping(path = "/{id}", produces = {"application/json", "application/xml"})
-    private ResponseEntity<?> getTagById(@PathVariable final UUID id) {
-        TagVO tagVO = new TagVO(){{
-            setKey(id);
-            setTitle("Novo titulo");
-            setCreatedAt(OffsetDateTime.now());
-            setUpdatedAt(OffsetDateTime.now());
-        }};
-        tagVO.add(linkTo(TagController.class).withRel("tag"));
-        //tagVO.add(linkTo(methodOn(TagController.class).list()).withRel("memberships"));
+    public ResponseEntity<?> getTagById(@PathVariable("id") final UUID id) {
+        final TagVO tagVO = tagService.findById(id);
+
+        tagVO.add(linkTo(methodOn(TagController.class).list()).withRel("tags"));
         tagVO.add(linkTo(methodOn(TagController.class).getTagById(id)).withSelfRel());
 
-        //tagVO.add(linkTo(methodOn(TagController.class)).withRel("tag"));
         return ResponseEntity.ok(tagVO);
     }
 
     @PutMapping(path = "/{id}")
-    private ResponseEntity<?> update(@PathVariable final UUID id, @RequestBody final TagVO tagVO) {
+    public ResponseEntity<?> update(@PathVariable final UUID id, @RequestBody final TagVO tagVO) {
         tagVO.setKey(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -55,7 +47,7 @@ public class TagController {
     }
 
     @GetMapping(path = "/tags")
-    private ResponseEntity<?> list() {
+    public ResponseEntity<?> list() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(tagService.list());

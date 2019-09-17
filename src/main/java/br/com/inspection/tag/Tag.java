@@ -20,12 +20,13 @@ public class Tag implements BaseModel {
     private UUID id;
 
     @NotNull
+    @Column(name = "title")
     private String title;
 
-    @JsonIgnore
+    @Column(name = "createdAt")
     private OffsetDateTime createdAt;
 
-    @JsonIgnore
+    @Column(name = "updatedAt")
     private OffsetDateTime updatedAt;
 
     @Override
