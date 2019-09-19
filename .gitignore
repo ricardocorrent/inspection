@@ -21,6 +21,8 @@ build/
 *.ipr
 out/
 target/*
+./target*
+./target/*
 
 ### NetBeans ###
 /nbproject/private/
