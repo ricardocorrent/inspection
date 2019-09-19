@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.ResourceSupport;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.Objects;
@@ -17,6 +20,9 @@ public class TagVO extends ResourceSupport implements Serializable {
     @JsonProperty("id")
     private UUID key;
 
+    @NotNull
+    @NotBlank
+    @NotEmpty
     private String title;
 
     private OffsetDateTime createdAt;

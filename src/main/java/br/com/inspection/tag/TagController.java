@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import java.util.UUID;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -26,7 +27,7 @@ public class TagController {
     private TagService tagService;
 
     @PostMapping
-    private ResponseEntity<?> insert(@RequestBody final TagVO tagVO) {
+    private ResponseEntity<?> insert(@Valid @RequestBody final TagVO tagVO) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(tagService.insert(tagVO));
@@ -42,7 +43,7 @@ public class TagController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable final UUID id, @RequestBody final TagVO tagVO) {
+    public ResponseEntity<?> update(@PathVariable final UUID id, @Valid @RequestBody final TagVO tagVO) {
         tagVO.setKey(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
