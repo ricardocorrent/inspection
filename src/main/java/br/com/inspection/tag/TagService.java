@@ -2,6 +2,7 @@ package br.com.inspection.tag;
 
 import br.com.inspection.adapter.DozerAdapter;
 import br.com.inspection.exception.RegisterNotFoundException;
+import br.com.inspection.server.AbstractService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class TagService {
+public class TagService extends AbstractService<Tag, TagVO> {
 
     @Inject
     private TagRepository tagRepository;
@@ -20,7 +21,7 @@ public class TagService {
     public TagVO insert(final TagVO tagVO) {
         final Tag tag = DozerAdapter.parseObject(tagVO, Tag.class);
         this.doGenerateInsertValues(tag);
-        return DozerAdapter.parseObject(tagRepository.save(tag), TagVO.class);
+        return DozerAdapter.parseObject(super.insert(tag), TagVO.class);
     }
 
     public TagVO update(final TagVO tagVO) {
@@ -35,22 +36,6 @@ public class TagService {
         } else {
             throw new RegisterNotFoundException();
         }
-    }
-
-    public void delete(final UUID tagId) {
-        final Tag tagfromDb =
-                this.tagRepository
-                        .findById(tagId)
-                        .orElseThrow(RegisterNotFoundException::new);
-        if (tagfromDb != null) {
-            this.tagRepository.delete(tagfromDb);
-        }
-    }
-
-    public TagVO findById(final UUID tagId) {
-        return DozerAdapter.parseObject(
-                tagRepository.findById(tagId)
-                        .orElseThrow(RegisterNotFoundException::new), TagVO.class);
     }
 
     public Page<TagVO> list(final Pageable pageable) {
@@ -76,6 +61,11 @@ public class TagService {
     private void doGenerateUpdateValues(final Tag tag, final Tag tagFromDb) {
         tagFromDb.setTitle(tag.getTitle());
         tagFromDb.setUpdatedAt(OffsetDateTime.now());
+    }
+
+    @Override
+    public Class<TagVO> getClazz() {
+        return TagVO.class;
     }
 
 }
