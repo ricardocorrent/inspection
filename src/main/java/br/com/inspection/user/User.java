@@ -1,6 +1,8 @@
 package br.com.inspection.user;
 
 import br.com.inspection.permission.Permission;
+import br.com.inspection.userinformation.UserInformation;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -51,6 +53,10 @@ public class User implements UserDetails, Serializable {
             }
     )
     private List<Permission> permissions;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserInformation> informations;
 
     private OffsetDateTime createdAt;
 
@@ -183,5 +189,11 @@ public class User implements UserDetails, Serializable {
         this.updatedAt = updatedAt;
     }
 
+    public List<UserInformation> getInformations() {
+        return informations;
+    }
 
+    public void setInformations(final List<UserInformation> informations) {
+        this.informations = informations;
+    }
 }
