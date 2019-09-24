@@ -6,8 +6,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -18,16 +21,20 @@ public class UserInformation implements BaseModel {
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
     private User user;
 
     @NotNull
+    @NotEmpty
+    @NotBlank
     @Column(name = "title")
     private String title;
 
     @NotNull
+    @NotEmpty
+    @NotBlank
     @Column(name = "description")
     private String description;
 
@@ -91,4 +98,20 @@ public class UserInformation implements BaseModel {
         this.updatedAt = updatedAt;
     }
 
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserInformation)) return false;
+        final UserInformation that = (UserInformation) o;
+        return getId().equals(that.getId()) &&
+                getTitle().equals(that.getTitle()) &&
+                getDescription().equals(that.getDescription()) &&
+                getCreatedAt().equals(that.getCreatedAt()) &&
+                getUpdatedAt().equals(that.getUpdatedAt());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getTitle(), getDescription(), getCreatedAt(), getUpdatedAt());
+    }
 }

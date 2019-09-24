@@ -22,11 +22,6 @@ public class UserInformationVO extends ResourceSupport implements Serializable {
     @JsonProperty("id")
     private UUID key;
 
-    @JsonIgnoreProperties("user_id")
-    @Mapping("user")
-    @JsonProperty("user_id")
-    private User user;
-
     @NotNull
     @NotBlank
     @NotEmpty
@@ -37,10 +32,8 @@ public class UserInformationVO extends ResourceSupport implements Serializable {
     @NotEmpty
     private String description;
 
-    @Column(name = "createdAt")
     private OffsetDateTime createdAt;
 
-    @Column(name = "updatedAt")
     private OffsetDateTime updatedAt;
 
     public UUID getKey() {
@@ -49,14 +42,6 @@ public class UserInformationVO extends ResourceSupport implements Serializable {
 
     public void setKey(final UUID key) {
         this.key = key;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(final User user) {
-        this.user = user;
     }
 
     public String getTitle() {

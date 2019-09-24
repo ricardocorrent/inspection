@@ -1,4 +1,10 @@
 package br.com.inspection.userinformation;
 
-public class UserInformationRepository {
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.UUID;
+
+@Repository
+public interface UserInformationRepository extends PagingAndSortingRepository<UserInformation, UUID> {
 }

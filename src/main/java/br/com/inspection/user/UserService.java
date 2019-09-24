@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -41,31 +42,32 @@ public class UserService implements UserDetailsService {
     }
 
     public UserVO update(final UserVO userVO) {
-        final User userFromDb = this.repository
-                .findById(userVO.getKey()).orElse(null);
-
+        final User userFromDb = this.repository.findById(userVO.getKey()).orElseThrow(RegisterNotFoundException::new);
         final User user = DozerAdapter.parseObject(userVO, User.class);
-
-        if (userFromDb != null) {
-            this.doGenerateUpdateValues(user, userFromDb);
-            return DozerAdapter.parseObject(this.repository.save(userFromDb), UserVO.class);
-        } else {
-            throw new RegisterNotFoundException();
-        }
+        this.doGenerateUpdateValues(user, userFromDb);
+        return DozerAdapter.parseObject(this.repository.save(userFromDb), UserVO.class);
     }
 
     private void doGenerateUpdateValues(final User user, final User userFromDb) {
-        userFromDb.getInformations().clear();
-        final List<UserInformation> oldInformation = user.getInformations().stream().filter(userInformation -> userInformation.getId() != null).collect(Collectors.toList());
-        final List<UserInformation> newInformation = user.getInformations().stream().filter(userInformation -> userInformation.getId() == null).collect(Collectors.toList());
-        newInformation.forEach(userInformation -> {
-            userInformation.setId(UUID.randomUUID());
-            userInformation.setUser(user);
-            userInformation.setCreatedAt(OffsetDateTime.now());
-            userInformation.setUpdatedAt(OffsetDateTime.now());
+        user.getInformations().forEach(userInformation -> {
+            if (userInformation.getUser() == null) {
+                userInformation.setUser(userFromDb);
+            }
+            if (userInformation.getId() == null) {
+                userInformation.setId(UUID.randomUUID());
+                userInformation.setCreatedAt(OffsetDateTime.now());
+                userInformation.setUpdatedAt(OffsetDateTime.now());
+            }
+            if (userFromDb.getInformations().stream().map(UserInformation::getId).anyMatch(id -> id.equals(userInformation.getId()))) {
+                final Set<UserInformation> collect = userFromDb.getInformations().stream().filter(u -> u.equals(userInformation)).collect(Collectors.toSet());
+                if (collect.isEmpty()) {
+                    userInformation.setUpdatedAt(OffsetDateTime.now());
+                }
+            }
         });
-        userFromDb.getInformations().addAll(oldInformation);
-        userFromDb.getInformations().addAll(newInformation);
+
+        userFromDb.getInformations().clear();
+        userFromDb.getInformations().addAll(user.getInformations());
         userFromDb.setUpdatedAt(OffsetDateTime.now());
     }
 

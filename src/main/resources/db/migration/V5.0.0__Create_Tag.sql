@@ -4,4 +4,4 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `created_at` DATETIME NULL,
   `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
+ENGINE = InnoDB;

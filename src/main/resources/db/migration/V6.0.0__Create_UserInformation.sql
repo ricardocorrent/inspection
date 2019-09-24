@@ -6,6 +6,4 @@ CREATE TABLE IF NOT EXISTS `user_information` (
   `created_at` DATETIME NULL,
   `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`)
-);
-
-CREATE INDEX `fk_user_information_user_idx` on `user_information` (`user_id` ASC);
+) ENGINE = InnoDB;

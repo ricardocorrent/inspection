@@ -3,15 +3,16 @@ package br.com.inspection.user;
 import br.com.inspection.permission.Permission;
 import br.com.inspection.userinformation.UserInformation;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
@@ -54,9 +55,13 @@ public class User implements UserDetails, Serializable {
     )
     private List<Permission> permissions;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserInformation> informations;
+    @OneToMany(
+            mappedBy = "user",
+            fetch = FetchType.LAZY,
+            orphanRemoval=true,
+            cascade={CascadeType.ALL}
+            )
+    private Set<UserInformation> informations = new HashSet<>();
 
     private OffsetDateTime createdAt;
 
@@ -189,11 +194,11 @@ public class User implements UserDetails, Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public List<UserInformation> getInformations() {
+    public Set<UserInformation> getInformations() {
         return informations;
     }
 
-    public void setInformations(final List<UserInformation> informations) {
+    public void setInformations(final Set<UserInformation> informations) {
         this.informations = informations;
     }
 }

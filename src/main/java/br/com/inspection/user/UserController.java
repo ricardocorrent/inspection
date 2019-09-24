@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable final UUID id, @RequestBody final UserVO userVO) {
+    public ResponseEntity<?> update(@PathVariable final UUID id, @Valid @RequestBody final UserVO userVO) {
         userVO.setKey(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
