@@ -1,5 +1,6 @@
 package br.com.inspection.tag;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -35,7 +36,7 @@ public class TagController {
 
     @GetMapping(path = "/{id}", produces = {"application/json", "application/xml"})
     public ResponseEntity<?> getTagById(@PathVariable("id") final UUID id) {
-        final TagVO tagVO = tagService.findById(id);
+        final TagVO tagVO = tagService.getById(id);
 
         tagVO.add(linkTo(methodOn(TagController.class).getTagById(id)).withSelfRel());
 
