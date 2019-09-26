@@ -1,7 +1,6 @@
 package br.com.inspection.tag;
 
 import br.com.inspection.persistence.model.BaseModel;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
