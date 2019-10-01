@@ -1,5 +1,6 @@
 package br.com.inspection.tag;
 
+import br.com.inspection.persistence.model.BaseVO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
@@ -14,7 +15,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @JsonPropertyOrder({"id", "title", "createdAt", "updatedAt"})
-public class TagVO extends ResourceSupport implements Serializable {
+public class TagVO extends ResourceSupport implements Serializable, BaseVO {
 
     @Mapping("id")
     @JsonProperty("id")

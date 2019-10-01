@@ -1,4 +1,4 @@
-package br.com.inspection.tag;
+package br.com.inspection.target;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,11 +8,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
-
 @Repository
-public interface TagRepository extends PagingAndSortingRepository<Tag, UUID> {
+public interface TargetRepository extends PagingAndSortingRepository<Target, UUID> {
 
-    @Query("select t from Tag t where t.title like lower(concat ('%', :title, '%'))")
-    Page<Tag> findTagByTitle(@Param("title") final String title, final Pageable pageable);
+    @Query("select t from Target t where t.name like lower(concat ('%', :name, '%'))")
+    Page<Target> findTargetByName(@Param("name") final String name, final Pageable pageable);
 
 }
