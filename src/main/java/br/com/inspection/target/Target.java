@@ -2,16 +2,15 @@ package br.com.inspection.target;
 
 
 import br.com.inspection.persistence.model.BaseModel;
+import br.com.inspection.targetinformation.TargetInformation;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -34,5 +33,9 @@ public class Target implements BaseModel {
 
     @Column(name = "updatedAt")
     private OffsetDateTime updatedAt;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "target_id", nullable = false)
+    private List<TargetInformation> informations;
 
 }

@@ -22,6 +22,7 @@ public class TargetService extends AbstractService<Target, TargetVO> {
     protected void doGenerateUpdateValues(final Target target, final Target targetFromDb) {
         super.doGenerateUpdateValues(target, targetFromDb);
         targetFromDb.setName(target.getName());
+        targetFromDb.setInformations(target.getInformations());
     }
 
     @Override
