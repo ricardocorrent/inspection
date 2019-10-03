@@ -1,4 +1,4 @@
-package br.com.inspection.security;
+package br.com.inspection.server.security;
 
 import java.io.Serializable;
 import java.util.Objects;

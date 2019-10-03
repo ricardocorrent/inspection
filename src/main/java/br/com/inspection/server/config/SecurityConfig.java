@@ -1,7 +1,7 @@
-package br.com.inspection.config;
+package br.com.inspection.server.config;
 
-import br.com.inspection.security.jwt.JwtConfigurer;
-import br.com.inspection.security.jwt.JwtTokenProvider;
+import br.com.inspection.server.security.jwt.JwtConfigurer;
+import br.com.inspection.server.security.jwt.JwtTokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

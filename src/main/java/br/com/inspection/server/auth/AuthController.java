@@ -1,7 +1,7 @@
-package br.com.inspection.auth;
+package br.com.inspection.server.auth;
 
-import br.com.inspection.security.AccountCredentialsVO;
-import br.com.inspection.security.jwt.JwtTokenProvider;
+import br.com.inspection.server.security.AccountCredentialsVO;
+import br.com.inspection.server.security.jwt.JwtTokenProvider;
 import br.com.inspection.user.User;
 import br.com.inspection.user.UserRepository;
 import org.springframework.http.ResponseEntity;

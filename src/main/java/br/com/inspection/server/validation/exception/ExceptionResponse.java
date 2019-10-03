@@ -1,4 +1,4 @@
-package br.com.inspection.exception;
+package br.com.inspection.server.validation.exception;
 
 import java.io.Serializable;
 import java.util.Date;

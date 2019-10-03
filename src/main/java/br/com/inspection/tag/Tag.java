@@ -1,6 +1,6 @@
 package br.com.inspection.tag;
 
-import br.com.inspection.persistence.model.BaseModel;
+import br.com.inspection.server.model.BaseModel;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

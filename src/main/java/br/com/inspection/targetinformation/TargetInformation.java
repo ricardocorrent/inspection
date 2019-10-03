@@ -1,8 +1,6 @@
 package br.com.inspection.targetinformation;
 
-import br.com.inspection.persistence.model.BaseModel;
-import br.com.inspection.target.Target;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import br.com.inspection.server.model.BaseModel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

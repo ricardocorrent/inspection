@@ -1,4 +1,4 @@
-package br.com.inspection.security.jwt;
+package br.com.inspection.server.security.jwt;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

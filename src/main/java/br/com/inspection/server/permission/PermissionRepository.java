@@ -1,4 +1,4 @@
-package br.com.inspection.permission;
+package br.com.inspection.server.permission;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

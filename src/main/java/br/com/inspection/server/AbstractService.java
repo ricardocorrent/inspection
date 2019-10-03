@@ -1,9 +1,9 @@
 package br.com.inspection.server;
 
-import br.com.inspection.adapter.DozerAdapter;
-import br.com.inspection.exception.RegisterNotFoundException;
-import br.com.inspection.persistence.model.BaseModel;
-import br.com.inspection.persistence.model.BaseVO;
+import br.com.inspection.server.adapter.DozerAdapter;
+import br.com.inspection.server.validation.exception.RegisterNotFoundException;
+import br.com.inspection.server.model.BaseModel;
+import br.com.inspection.server.model.BaseVO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
