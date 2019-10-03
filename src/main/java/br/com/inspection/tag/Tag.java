@@ -34,4 +34,5 @@ public class Tag extends PhysicalBaseEntity {
     public void preUpdate() {
         super.preUpdate();
     }
+
 }
