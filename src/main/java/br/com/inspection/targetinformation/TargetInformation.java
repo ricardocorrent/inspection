@@ -1,30 +1,21 @@
 package br.com.inspection.targetinformation;
 
-import br.com.inspection.server.model.BaseModel;
-import lombok.EqualsAndHashCode;
+import br.com.inspection.persistence.model.PhysicalBaseEntity;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.time.OffsetDateTime;
-import java.util.UUID;
 
-@EqualsAndHashCode
 @Getter
 @Setter
 @Entity
 @Table(name = "target_information")
-public class TargetInformation implements BaseModel {
-
-    @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)")
-    private UUID id;
+public class TargetInformation extends PhysicalBaseEntity {
 
     @NotNull
     @NotEmpty
@@ -37,11 +28,5 @@ public class TargetInformation implements BaseModel {
     @NotBlank
     @Column(name = "description")
     private String description;
-
-    @Column(name = "createdAt")
-    private OffsetDateTime createdAt;
-
-    @Column(name = "updatedAt")
-    private OffsetDateTime updatedAt;
 
 }
