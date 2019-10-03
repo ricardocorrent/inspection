@@ -1,6 +1,6 @@
 package br.com.inspection.targetinformation;
 
-import br.com.inspection.persistence.model.PhysicalBaseEntity;
+import br.com.inspection.server.model.PhysicalBaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 

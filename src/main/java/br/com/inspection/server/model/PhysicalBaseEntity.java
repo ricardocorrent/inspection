@@ -1,5 +1,6 @@
-package br.com.inspection.persistence.model;
+package br.com.inspection.server.model;
 
+import br.com.inspection.server.model.BaseModel;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -63,7 +64,6 @@ public class PhysicalBaseEntity extends BaseModel {
 
     @PreUpdate
     public void preUpdate() {
-        this.createdAt = this.getCreatedAt();
         this.updatedAt = OffsetDateTime.now();
     }
 
