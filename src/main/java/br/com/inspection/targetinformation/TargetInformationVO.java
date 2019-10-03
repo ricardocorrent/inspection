@@ -1,7 +1,6 @@
 package br.com.inspection.targetinformation;
 
-import br.com.inspection.persistence.model.BaseVO;
-import br.com.inspection.target.Target;
+import br.com.inspection.server.model.BaseVO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;

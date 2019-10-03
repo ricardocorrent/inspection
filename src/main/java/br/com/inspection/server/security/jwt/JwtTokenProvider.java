@@ -1,6 +1,6 @@
-package br.com.inspection.security.jwt;
+package br.com.inspection.server.security.jwt;
 
-import br.com.inspection.exception.InvalidJwtAuthenticationException;
+import br.com.inspection.server.validation.exception.InvalidJwtAuthenticationException;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,4 +1,4 @@
-package br.com.inspection.persistence.model;
+package br.com.inspection.server.model;
 
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;

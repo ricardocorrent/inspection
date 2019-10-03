@@ -1,7 +1,7 @@
 package br.com.inspection.server;
 
-import br.com.inspection.persistence.model.BaseModel;
-import br.com.inspection.persistence.model.BaseVO;
+import br.com.inspection.server.model.BaseModel;
+import br.com.inspection.server.model.BaseVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

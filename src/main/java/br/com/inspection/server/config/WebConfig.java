@@ -1,4 +1,4 @@
-package br.com.inspection.config;
+package br.com.inspection.server.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;

@@ -1,4 +1,4 @@
-package br.com.inspection.exception;
+package br.com.inspection.server.validation.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

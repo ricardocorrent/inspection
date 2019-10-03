@@ -1,4 +1,4 @@
-package br.com.inspection.exception;
+package br.com.inspection.server.validation.exception;
 
 public class RequestException extends RuntimeException {
 

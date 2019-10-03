@@ -1,7 +1,7 @@
-package br.com.inspection.exception.handler;
+package br.com.inspection.server.validation.handler;
 
-import br.com.inspection.exception.ExceptionResponse;
-import br.com.inspection.exception.InvalidJwtAuthenticationException;
+import br.com.inspection.server.validation.exception.ExceptionResponse;
+import br.com.inspection.server.validation.exception.InvalidJwtAuthenticationException;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package br.com.inspection.adapter;
+package br.com.inspection.server.adapter;
 
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;

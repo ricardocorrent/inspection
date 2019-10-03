@@ -1,7 +1,7 @@
 package br.com.inspection.target;
 
 
-import br.com.inspection.persistence.model.BaseModel;
+import br.com.inspection.server.model.BaseModel;
 import br.com.inspection.targetinformation.TargetInformation;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package br.com.inspection.permission;
+package br.com.inspection.server.permission;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;

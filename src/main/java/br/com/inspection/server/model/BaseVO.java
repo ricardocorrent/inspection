@@ -1,4 +1,4 @@
-package br.com.inspection.persistence.model;
+package br.com.inspection.server.model;
 
 import java.io.Serializable;
 import java.util.UUID;

@@ -1,9 +1,8 @@
 package br.com.inspection.userinformation;
 
-import br.com.inspection.persistence.model.BaseModel;
+import br.com.inspection.server.model.BaseModel;
 import br.com.inspection.user.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
