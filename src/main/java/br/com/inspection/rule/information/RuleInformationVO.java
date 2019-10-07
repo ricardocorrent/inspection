@@ -1,6 +1,5 @@
-package br.com.inspection.rule;
+package br.com.inspection.rule.information;
 
-import br.com.inspection.rule.information.RuleInformationVO;
 import br.com.inspection.server.model.BaseVO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -9,19 +8,16 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.hateoas.ResourceSupport;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.OffsetDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
-@JsonPropertyOrder({"id", "title", "description", "informations", "createdAt", "updatedAt"})
-public class RuleVO extends ResourceSupport implements BaseVO {
+@JsonPropertyOrder({"id", "title", "description", "createdAt", "updatedAt"})
+public class RuleInformationVO extends ResourceSupport implements BaseVO {
 
     @Mapping("id")
     @JsonProperty("id")
@@ -30,17 +26,12 @@ public class RuleVO extends ResourceSupport implements BaseVO {
     @NotNull
     @NotBlank
     @NotEmpty
-    @Size(max = 100)
     private String title;
 
     @NotNull
     @NotBlank
     @NotEmpty
-    @Size(max = 150)
     private String description;
-
-    @Valid
-    private List<RuleInformationVO> informations;
 
     private OffsetDateTime createdAt;
 
