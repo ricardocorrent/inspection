@@ -1,4 +1,4 @@
-package br.com.inspection.targetinformation;
+package br.com.inspection.target.information;
 
 import br.com.inspection.server.model.BaseVO;
 import com.fasterxml.jackson.annotation.JsonProperty;

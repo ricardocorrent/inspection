@@ -1,7 +1,7 @@
 package br.com.inspection.target;
 
 import br.com.inspection.server.model.PhysicalBaseEntity;
-import br.com.inspection.targetinformation.TargetInformation;
+import br.com.inspection.target.information.TargetInformation;
 import lombok.Getter;
 import lombok.Setter;
 
