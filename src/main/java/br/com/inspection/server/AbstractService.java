@@ -29,7 +29,6 @@ public abstract class AbstractService<T extends BaseModel, Z extends BaseVO> {
         final T t = this.convertEntityVOToEntity(z);
 
         if (tFromDb != null) {
-            this.doGenerateUpdateValues(t, tFromDb);
             return convertEntityToEntityVO(repository.save(t));
         } else {
             throw new RegisterNotFoundException();
@@ -66,8 +65,5 @@ public abstract class AbstractService<T extends BaseModel, Z extends BaseVO> {
 
     public abstract Class<T> getEntityClazz();
 
-    protected void doGenerateUpdateValues(final T t, final T tFromDb) {
-        t.setCreatedAt(tFromDb.getCreatedAt());
-    }
 
 }

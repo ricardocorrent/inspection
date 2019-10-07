@@ -19,12 +19,6 @@ public class TagService extends AbstractService<Tag, TagVO> {
     }
 
     @Override
-    protected void doGenerateUpdateValues(final Tag tag, final Tag tagFromDb) {
-        super.doGenerateUpdateValues(tag, tagFromDb);
-        tagFromDb.setTitle(tag.getTitle());
-    }
-
-    @Override
     public Class<TagVO> getClazz() {
         return TagVO.class;
     }

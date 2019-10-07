@@ -29,13 +29,4 @@ public class UserInformation extends PhysicalBaseEntity {
     @Column(name = "description")
     private String description;
 
-    @Override
-    public void prePersist() {
-        super.prePersist();
-    }
-
-    @Override
-    public void preUpdate() {
-        super.preUpdate();
-    }
 }

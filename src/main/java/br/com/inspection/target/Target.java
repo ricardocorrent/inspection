@@ -21,7 +21,7 @@ public class Target extends PhysicalBaseEntity {
     @Size(max = 50)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "target_id", nullable = false)
     private List<TargetInformation> informations;
 

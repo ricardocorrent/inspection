@@ -1,7 +1,8 @@
 package br.com.inspection.server.model;
 
-import br.com.inspection.server.model.BaseModel;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
@@ -16,9 +17,11 @@ public class PhysicalBaseEntity extends BaseModel {
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
-    @Column(name = "created_at")
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
     private OffsetDateTime createdAt;
 
+    @UpdateTimestamp
     @Column(name = "updated_at")
     private OffsetDateTime updatedAt;
 

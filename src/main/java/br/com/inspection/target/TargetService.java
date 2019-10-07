@@ -19,13 +19,6 @@ public class TargetService extends AbstractService<Target, TargetVO> {
     }
 
     @Override
-    protected void doGenerateUpdateValues(final Target target, final Target targetFromDb) {
-        super.doGenerateUpdateValues(target, targetFromDb);
-        targetFromDb.setName(target.getName());
-        targetFromDb.setInformations(target.getInformations());
-    }
-
-    @Override
     public Class<TargetVO> getClazz() {
         return TargetVO.class;
     }
