@@ -1,7 +1,9 @@
 package br.com.inspection.target;
 
 import br.com.inspection.server.model.BaseVO;
+import br.com.inspection.tag.TagVO;
 import br.com.inspection.target.information.TargetInformationVO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
@@ -20,7 +22,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@JsonPropertyOrder({"id", "name", "informations", "createdAt", "updatedAt"})
+@JsonPropertyOrder({"id", "name", "informations", "tags", "createdAt", "updatedAt"})
 public class TargetVO extends ResourceSupport implements BaseVO {
 
     @Mapping("id")
@@ -35,6 +37,10 @@ public class TargetVO extends ResourceSupport implements BaseVO {
 
     @Valid
     private List<TargetInformationVO> informations;
+
+    @Valid
+    @JsonIgnoreProperties({"target", "targets"})
+    private List<TagVO> tags;
 
     private OffsetDateTime createdAt;
 
