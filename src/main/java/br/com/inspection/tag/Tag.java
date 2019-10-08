@@ -1,5 +1,6 @@
 package br.com.inspection.tag;
 
+import br.com.inspection.rule.Rule;
 import br.com.inspection.server.model.PhysicalBaseEntity;
 import br.com.inspection.target.Target;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -27,5 +28,9 @@ public class Tag extends PhysicalBaseEntity {
     @ManyToMany(mappedBy = "tags")
     @JsonIgnoreProperties({"tags", "informations", "createdAt", "updatedAt"})
     private Set<Target> targets = new HashSet<>();
+
+    @ManyToMany(mappedBy = "tags")
+    @JsonIgnoreProperties({"tags", "informations", "createdAt", "updatedAt"})
+    private Set<Rule> rules = new HashSet<>();
 
 }

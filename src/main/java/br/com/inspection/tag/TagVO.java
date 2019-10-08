@@ -1,5 +1,6 @@
 package br.com.inspection.tag;
 
+import br.com.inspection.rule.RuleVO;
 import br.com.inspection.server.model.BaseVO;
 import br.com.inspection.target.TargetVO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -34,6 +35,9 @@ public class TagVO extends ResourceSupport implements Serializable, BaseVO {
 
     @JsonIgnoreProperties({"tag", "tags", "informations", "createdAt", "updatedAt"})
     private List<TargetVO> targets;
+
+    @JsonIgnoreProperties({"tag", "tags", "informations", "createdAt", "updatedAt"})
+    private List<RuleVO> rules;
 
     private OffsetDateTime createdAt;
 

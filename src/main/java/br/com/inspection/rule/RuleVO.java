@@ -2,6 +2,8 @@ package br.com.inspection.rule;
 
 import br.com.inspection.rule.information.RuleInformationVO;
 import br.com.inspection.server.model.BaseVO;
+import br.com.inspection.tag.TagVO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
@@ -41,6 +43,10 @@ public class RuleVO extends ResourceSupport implements BaseVO {
 
     @Valid
     private List<RuleInformationVO> informations;
+
+    @Valid
+    @JsonIgnoreProperties({"target", "targets"})
+    private List<TagVO> tags;
 
     private OffsetDateTime createdAt;
 
