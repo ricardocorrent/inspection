@@ -1,5 +1,6 @@
 package br.com.inspection.rule;
 
+import br.com.inspection.item.Item;
 import br.com.inspection.rule.information.RuleInformation;
 import br.com.inspection.server.model.PhysicalBaseEntity;
 import br.com.inspection.tag.Tag;
@@ -41,5 +42,9 @@ public class Rule extends PhysicalBaseEntity {
     )
     @JsonIgnoreProperties({"rule", "rules"})
     private Set<Tag> tags = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "rule_id", nullable = false)
+    private Set<Item> items;
 
 }
