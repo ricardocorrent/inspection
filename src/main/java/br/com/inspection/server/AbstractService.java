@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import javax.inject.Inject;
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
 public abstract class AbstractService<T extends BaseModel, Z extends BaseVO> {
@@ -27,7 +26,7 @@ public abstract class AbstractService<T extends BaseModel, Z extends BaseVO> {
                 .findById(z.getKey()).orElseThrow(RegisterNotFoundException::new);
 
         final T t = this.convertEntityVOToEntity(z);
-
+        //this.doGenerateUpdateValues(t);
         if (tFromDb != null) {
             return convertEntityToEntityVO(repository.save(t));
         } else {
@@ -65,5 +64,6 @@ public abstract class AbstractService<T extends BaseModel, Z extends BaseVO> {
 
     public abstract Class<T> getEntityClazz();
 
+    protected void doGenerateUpdateValues(final T t) {}
 
 }

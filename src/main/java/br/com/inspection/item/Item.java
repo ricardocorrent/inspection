@@ -1,6 +1,8 @@
 package br.com.inspection.item;
 
 import br.com.inspection.server.model.PhysicalBaseEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,11 +27,11 @@ public class Item extends PhysicalBaseEntity {
     @Size(max = 150)
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "parent_id")
+    @ManyToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name = "parent_id", referencedColumnName = "id")
     private Item parent;
 
-    @OneToMany(mappedBy="parent",cascade={CascadeType.ALL})
+    @OneToMany(mappedBy="parent", cascade={CascadeType.ALL})
     private Set<Item> children;
 
 }

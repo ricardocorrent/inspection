@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `item` (
   `id` BINARY(16) NOT NULL,
-  `rule_id` BINARY(16) NOT NULL,
+  `rule_id` BINARY(16) NULL,
   `code` VARCHAR(50) NOT NULL,
   `description` VARCHAR(150) NOT NULL,
   `created_at` DATETIME NULL,

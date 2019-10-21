@@ -31,7 +31,7 @@ public class Rule extends PhysicalBaseEntity {
     @Size(max = 150)
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.MERGE, orphanRemoval = true)
     @JoinColumn(name = "rule_id", nullable = false)
     private List<RuleInformation> informations;
 
@@ -43,7 +43,7 @@ public class Rule extends PhysicalBaseEntity {
     @JsonIgnoreProperties({"rule", "rules"})
     private Set<Tag> tags = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = {CascadeType.MERGE}, orphanRemoval = true)
     @JoinColumn(name = "rule_id", nullable = false)
     private Set<Item> items;
 

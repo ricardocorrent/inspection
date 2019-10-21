@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@JsonPropertyOrder({"id", "code", "description", "children", "createdAt", "updatedAt"})
+@JsonPropertyOrder({"id", "code", "description", "parent", "children", "createdAt", "updatedAt"})
 public class ItemVO extends ResourceSupport implements BaseVO {
 
     @Mapping("id")
@@ -37,11 +37,10 @@ public class ItemVO extends ResourceSupport implements BaseVO {
     private String description;
 
     @Valid
-    @JsonIgnoreProperties({"children", "item", "parent"})
     private ItemVO parent;
 
     @Valid
-    @JsonIgnoreProperties({"parent"})
+    //@JsonIgnoreProperties({"parent"})
     private List<ItemVO> children;
 
     private OffsetDateTime createdAt;
