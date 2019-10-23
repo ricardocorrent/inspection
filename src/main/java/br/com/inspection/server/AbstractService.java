@@ -26,7 +26,7 @@ public abstract class AbstractService<T extends BaseModel, Z extends BaseVO> {
                 .findById(z.getKey()).orElseThrow(RegisterNotFoundException::new);
 
         final T t = this.convertEntityVOToEntity(z);
-        //this.doGenerateUpdateValues(t);
+        this.doGenerateUpdateValues(t);
         if (tFromDb != null) {
             return convertEntityToEntityVO(repository.save(t));
         } else {

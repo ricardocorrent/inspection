@@ -50,6 +50,7 @@ public class RuleVO extends ResourceSupport implements BaseVO {
     private List<TagVO> tags;
 
     @Valid
+    @JsonIgnoreProperties({"item", "items", "parent"})
     private List<ItemVO> items;
 
     private OffsetDateTime createdAt;

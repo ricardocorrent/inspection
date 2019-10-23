@@ -23,21 +23,32 @@ public class RuleService extends AbstractService<Rule, RuleVO> {
     @Override
     protected void doGenerateUpdateValues(final Rule rule) {
         if (CollectionUtils.isNotEmpty(rule.getItems())) {
-            final Set<Item> items = rule.getItems();
-
-            items.forEach(item -> {
-                if (CollectionUtils.isNotEmpty(item.getChildren())) {
-                    setParentIntoChildren(item.getChildren(), item);
-                    final Set<Item> children = item.getChildren();
-                    children.forEach(item2 -> setParentIntoChildren(item2.getChildren(), item2));
-                }
-            });
-
+            setParentIfItemHasChildren(rule.getItems());
         }
     }
 
-    private void setParentIntoChildren(final Set<Item> items, final Item parent) {
-        items.forEach(item -> item.setParent(parent));
+    private void setParentIfItemHasChildren(final Set<Item> items) {
+        for (int i = 0; i < items.size(); i++) {
+            final Item item = (Item) items.toArray()[i];
+            if (CollectionUtils.isNotEmpty(item.getChildren())) {
+                setParentIntoChildren(item.getChildren(), item);
+                setParentIfChildrenHasChildren(item.getChildren());
+            }
+        }
+    }
+
+    private void setParentIfChildrenHasChildren(final Set<Item> children) {
+        for (int i = 0; i < children.size(); i++) {
+            children.forEach(item -> {
+                if (CollectionUtils.isNotEmpty(item.getChildren())) {
+                    setParentIntoChildren(item.getChildren(), item);
+                }
+            });
+        }
+    }
+
+    private void setParentIntoChildren(final Set<Item> children, final Item parent) {
+        children.forEach(item -> item.setParent(parent));
     }
 
 }
