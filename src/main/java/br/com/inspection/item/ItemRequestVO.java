@@ -1,7 +1,6 @@
 package br.com.inspection.item;
 
 import br.com.inspection.server.model.BaseVO;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
@@ -19,7 +18,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @JsonPropertyOrder({"id", "code", "description", "children"})
-public class ItemVO extends ResourceSupport implements BaseVO {
+public class ItemRequestVO extends ResourceSupport implements BaseVO {
 
     @Mapping("id")
     @JsonProperty("id")
@@ -36,10 +35,9 @@ public class ItemVO extends ResourceSupport implements BaseVO {
     private String description;
 
     @Valid
-    private ItemVO parent;
+    private ItemRequestVO parent;
 
     @Valid
-    @JsonIgnoreProperties({"item", "items", "parent"})
-    private List<ItemVO> children;
+    private List<ItemRequestVO> children;
 
 }

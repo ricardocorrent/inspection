@@ -11,7 +11,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/api/rule")
-public class RuleController extends AbstractController<Rule, RuleVO> {
+public class RuleController extends AbstractController<Rule, RuleVO, RuleRequestVO> {
 
     @Override
     public void generateHateoas(final RuleVO ruleVO) {

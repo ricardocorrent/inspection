@@ -18,7 +18,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/api/target")
-public class TargetController extends AbstractController<Target, TargetVO> {
+public class TargetController extends AbstractController<Target, TargetVO, TargetVO> {
 
     @Inject
     private TargetService targetService;

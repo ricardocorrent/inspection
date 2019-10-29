@@ -11,7 +11,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import javax.inject.Inject;
 import java.util.UUID;
 
-public abstract class AbstractService<T extends BaseModel, Z extends BaseVO> {
+public abstract class AbstractService<T extends BaseModel, Z extends BaseVO, U extends BaseVO> {
 
     @Inject
     private PagingAndSortingRepository<T, UUID> repository;
@@ -21,11 +21,11 @@ public abstract class AbstractService<T extends BaseModel, Z extends BaseVO> {
         return convertEntityToEntityVO(repository.save(t));
     }
 
-    public Z update(final Z z) {
+    public Z update(final U u) {
         final T tFromDb = repository
-                .findById(z.getKey()).orElseThrow(RegisterNotFoundException::new);
+                .findById(u.getKey()).orElseThrow(RegisterNotFoundException::new);
 
-        final T t = this.convertEntityVOToEntity(z);
+        final T t = this.convertEntityRequestVOToEntity(u);
         this.doGenerateUpdateValues(t);
         if (tFromDb != null) {
             return convertEntityToEntityVO(repository.save(t));
@@ -56,13 +56,24 @@ public abstract class AbstractService<T extends BaseModel, Z extends BaseVO> {
         return DozerAdapter.parseObject(t, getClazz());
     }
 
+    public U convertEntityToEntityRequestVO(final T t) {
+        return DozerAdapter.parseObject(t, getEntityRequestClazz());
+    }
+
     public T convertEntityVOToEntity(final Z z) {
         return DozerAdapter.parseObject(z, getEntityClazz());
     }
 
+    public T convertEntityRequestVOToEntity(final U u) {
+        return DozerAdapter.parseObject(u, getEntityClazz());
+    }
+
+
     public abstract Class<Z> getClazz();
 
     public abstract Class<T> getEntityClazz();
+
+    public abstract Class<U> getEntityRequestClazz();
 
     protected void doGenerateUpdateValues(final T t) {}
 

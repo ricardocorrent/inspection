@@ -1,5 +1,6 @@
 package br.com.inspection.rule;
 
+import br.com.inspection.item.ItemRequestVO;
 import br.com.inspection.item.ItemVO;
 import br.com.inspection.rule.information.RuleInformationVO;
 import br.com.inspection.server.model.BaseVO;
@@ -24,7 +25,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @JsonPropertyOrder({"id", "title", "description", "informations", "items"})
-public class RuleVO extends ResourceSupport implements BaseVO {
+public class RuleRequestVO extends ResourceSupport implements BaseVO {
 
     @Mapping("id")
     @JsonProperty("id")
@@ -50,8 +51,7 @@ public class RuleVO extends ResourceSupport implements BaseVO {
     private List<TagVO> tags;
 
     @Valid
-    @JsonIgnoreProperties({"item", "items", "parent"})
-    private List<ItemVO> items;
+    private List<ItemRequestVO> items;
 
     private OffsetDateTime createdAt;
 

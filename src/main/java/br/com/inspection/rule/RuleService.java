@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 @Service
-public class RuleService extends AbstractService<Rule, RuleVO> {
+public class RuleService extends AbstractService<Rule, RuleVO, RuleRequestVO> {
 
     @Override
     public Class<RuleVO> getClazz() {
@@ -18,6 +18,11 @@ public class RuleService extends AbstractService<Rule, RuleVO> {
     @Override
     public Class<Rule> getEntityClazz() {
         return Rule.class;
+    }
+
+    @Override
+    public Class<RuleRequestVO> getEntityRequestClazz() {
+        return RuleRequestVO.class;
     }
 
     @Override
@@ -39,11 +44,20 @@ public class RuleService extends AbstractService<Rule, RuleVO> {
 
     private void setParentIfChildrenHasChildren(final Set<Item> children) {
         for (int i = 0; i < children.size(); i++) {
-            children.forEach(item -> {
-                if (CollectionUtils.isNotEmpty(item.getChildren())) {
-                    setParentIntoChildren(item.getChildren(), item);
-                }
-            });
+            final Item item = (Item) children.toArray()[i];
+            if (CollectionUtils.isNotEmpty(item.getChildren())) {
+                setParentIntoChildren(item.getChildren(), item);
+                setParentIfChildrensChildrenHasChildren(item.getChildren());
+            }
+        }
+    }
+
+    private void setParentIfChildrensChildrenHasChildren(final Set<Item> children) {
+        for (int i = 0; i < children.size(); i++) {
+            final Item item = (Item) children.toArray()[i];
+            if (CollectionUtils.isNotEmpty(item.getChildren())) {
+                setParentIntoChildren(item.getChildren(), item);
+            }
         }
     }
 
