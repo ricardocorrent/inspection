@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 
 @Service
-public class TagService extends AbstractService<Tag, TagVO, TagVO> {
+public class TagService extends AbstractService<Tag, TagVO> {
 
     @Inject
     private TagRepository tagRepository;
@@ -28,8 +28,4 @@ public class TagService extends AbstractService<Tag, TagVO, TagVO> {
         return Tag.class;
     }
 
-    @Override
-    public Class<TagVO> getEntityRequestClazz() {
-        return TagVO.class;
-    }
 }

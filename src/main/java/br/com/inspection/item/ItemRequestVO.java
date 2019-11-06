@@ -35,9 +35,9 @@ public class ItemRequestVO extends ResourceSupport implements BaseVO {
     private String description;
 
     @Valid
-    private ItemRequestVO parent;
+    private ItemVO parent;
 
     @Valid
-    private List<ItemRequestVO> children;
+    private List<ItemVO> children;
 
 }

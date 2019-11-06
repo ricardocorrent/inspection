@@ -18,7 +18,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/api/tag")
-public class TagController extends AbstractController<Tag, TagVO, TagVO> {
+public class TagController extends AbstractController<Tag, TagVO> {
 
     @Inject
     private TagService tagService;

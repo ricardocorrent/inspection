@@ -24,7 +24,6 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@JsonPropertyOrder({"id", "title", "description", "informations", "items"})
 public class RuleRequestVO extends ResourceSupport implements BaseVO {
 
     @Mapping("id")
@@ -47,7 +46,6 @@ public class RuleRequestVO extends ResourceSupport implements BaseVO {
     private List<RuleInformationVO> informations;
 
     @Valid
-    @JsonIgnoreProperties({"target", "targets"})
     private List<TagVO> tags;
 
     @Valid

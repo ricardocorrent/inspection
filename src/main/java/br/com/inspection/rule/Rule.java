@@ -43,7 +43,7 @@ public class Rule extends PhysicalBaseEntity {
     @JsonIgnoreProperties({"rule", "rules"})
     private Set<Tag> tags = new HashSet<>();
 
-    @OneToMany(cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @OneToMany(cascade = {CascadeType.MERGE}, orphanRemoval = true)
     @JoinColumn(name = "rule_id", nullable = false)
     private Set<Item> items;
 

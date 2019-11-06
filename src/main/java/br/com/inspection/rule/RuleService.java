@@ -2,13 +2,23 @@ package br.com.inspection.rule;
 
 import br.com.inspection.item.Item;
 import br.com.inspection.server.AbstractService;
+import br.com.inspection.server.adapter.DozerAdapter;
+import br.com.inspection.server.validation.exception.RegisterNotFoundException;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
 import java.util.Set;
 
 @Service
-public class RuleService extends AbstractService<Rule, RuleVO, RuleRequestVO> {
+public class RuleService extends AbstractService<Rule, RuleVO> {
+
+    private RuleRepository ruleRepository;
+
+    @Inject
+    public RuleService(final RuleRepository ruleRepository) {
+        this.ruleRepository = ruleRepository;
+    }
 
     @Override
     public Class<RuleVO> getClazz() {
@@ -20,13 +30,20 @@ public class RuleService extends AbstractService<Rule, RuleVO, RuleRequestVO> {
         return Rule.class;
     }
 
-    @Override
-    public Class<RuleRequestVO> getEntityRequestClazz() {
-        return RuleRequestVO.class;
+    public RuleVO update(final RuleRequestVO ruleRequestVO) {
+        final Rule ruleFromDb = ruleRepository
+                .findById(ruleRequestVO.getKey()).orElseThrow(RegisterNotFoundException::new);
+
+        final Rule rule = DozerAdapter.parseObject(ruleRequestVO, Rule.class);
+        this.doGenerateUpdateValues(rule);
+        if (ruleFromDb != null) {
+            return convertEntityToEntityVO(ruleRepository.save(rule));
+        } else {
+            throw new RegisterNotFoundException();
+        }
     }
 
-    @Override
-    protected void doGenerateUpdateValues(final Rule rule) {
+    private void doGenerateUpdateValues(final Rule rule) {
         if (CollectionUtils.isNotEmpty(rule.getItems())) {
             setParentIfItemHasChildren(rule.getItems());
         }

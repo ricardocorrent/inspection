@@ -17,10 +17,14 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.util.UUID;
 
-public abstract class AbstractController<T extends BaseModel, Z extends BaseVO, U extends BaseVO> {
+/**
+ * @param <T> Entity
+ * @param <Z> EntityVo
+ */
+public abstract class AbstractController<T extends BaseModel, Z extends BaseVO> {
 
     @Inject
-    private AbstractService<T, Z, U> abstractService;
+    private AbstractService<T, Z> abstractService;
 
     @PostMapping
     private ResponseEntity<?> insert(@Valid @RequestBody final Z z) {
@@ -45,11 +49,11 @@ public abstract class AbstractController<T extends BaseModel, Z extends BaseVO, 
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable final UUID id, @Valid @RequestBody final U u) {
-        u.setKey(id);
+    public ResponseEntity<?> update(@PathVariable final UUID id, @Valid @RequestBody final Z z) {
+        z.setKey(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(abstractService.update(u));
+                .body(abstractService.update(z));
     }
 
     @GetMapping(path = "/list-all")
