@@ -22,7 +22,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@JsonPropertyOrder({"id", "name", "informations", "tags", "createdAt", "updatedAt"})
+@JsonPropertyOrder({"id", "name", "information", "tags", "createdAt", "updatedAt"})
 public class TargetVO extends ResourceSupport implements BaseVO {
 
     @Mapping("id")
@@ -36,7 +36,7 @@ public class TargetVO extends ResourceSupport implements BaseVO {
     private String name;
 
     @Valid
-    private List<TargetInformationVO> informations;
+    private List<TargetInformationVO> information;
 
     @Valid
     @JsonIgnoreProperties({"target", "targets"})
