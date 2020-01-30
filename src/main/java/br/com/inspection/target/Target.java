@@ -27,7 +27,7 @@ public class Target extends PhysicalBaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "target_id", nullable = false)
-    private List<TargetInformation> informations;
+    private List<TargetInformation> information;
 
     @ManyToMany
     @JoinTable(name = "target_tag",

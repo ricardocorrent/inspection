@@ -7,10 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,11 +23,11 @@ public class Tag extends PhysicalBaseEntity {
     private String title;
 
     @ManyToMany(mappedBy = "tags")
-    @JsonIgnoreProperties({"tags", "informations", "createdAt", "updatedAt"})
+    @JsonIgnoreProperties({"tags", "information", "createdAt", "updatedAt"})
     private Set<Target> targets = new HashSet<>();
 
-    @ManyToMany(mappedBy = "tags")
-    @JsonIgnoreProperties({"tags", "informations", "createdAt", "updatedAt"})
+    @ManyToMany(mappedBy = "tags", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties({"tags", "information", "createdAt", "updatedAt"})
     private Set<Rule> rules = new HashSet<>();
 
 }

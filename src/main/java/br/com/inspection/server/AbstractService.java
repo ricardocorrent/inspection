@@ -1,15 +1,14 @@
 package br.com.inspection.server;
 
 import br.com.inspection.server.adapter.DozerAdapter;
-import br.com.inspection.server.validation.exception.RegisterNotFoundException;
 import br.com.inspection.server.model.BaseModel;
 import br.com.inspection.server.model.BaseVO;
+import br.com.inspection.server.validation.exception.RegisterNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import javax.inject.Inject;
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
 public abstract class AbstractService<T extends BaseModel, Z extends BaseVO> {

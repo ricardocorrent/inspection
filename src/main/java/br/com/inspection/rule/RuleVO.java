@@ -1,8 +1,10 @@
 package br.com.inspection.rule;
 
+import br.com.inspection.item.ItemVO;
 import br.com.inspection.rule.information.RuleInformationVO;
 import br.com.inspection.server.model.BaseVO;
 import br.com.inspection.tag.TagVO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -22,7 +24,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@JsonPropertyOrder({"id", "title", "description", "informations", "createdAt", "updatedAt"})
+@JsonPropertyOrder({"id", "title", "description", "information"})
 public class RuleVO extends ResourceSupport implements BaseVO {
 
     @Mapping("id")
@@ -42,14 +44,16 @@ public class RuleVO extends ResourceSupport implements BaseVO {
     private String description;
 
     @Valid
-    private List<RuleInformationVO> informations;
+    private List<RuleInformationVO> information;
 
     @Valid
-    @JsonIgnoreProperties({"target", "targets"})
+    @JsonIgnoreProperties({"target", "targets", "createdAt", "updatedAt"})
     private List<TagVO> tags;
 
+    @JsonIgnore
     private OffsetDateTime createdAt;
 
+    @JsonIgnore
     private OffsetDateTime updatedAt;
 
 }

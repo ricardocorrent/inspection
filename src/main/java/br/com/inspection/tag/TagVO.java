@@ -14,15 +14,14 @@ import org.springframework.hateoas.ResourceSupport;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
-@JsonPropertyOrder({"id", "title", "targets", "createdAt", "updatedAt"})
-public class TagVO extends ResourceSupport implements Serializable, BaseVO {
+@JsonPropertyOrder({"id", "title", "targets", "rules"})
+public class TagVO extends ResourceSupport implements BaseVO {
 
     @Mapping("id")
     @JsonProperty("id")
@@ -33,10 +32,10 @@ public class TagVO extends ResourceSupport implements Serializable, BaseVO {
     @NotEmpty
     private String title;
 
-    @JsonIgnoreProperties({"tag", "tags", "informations", "createdAt", "updatedAt"})
+    @JsonIgnoreProperties({"information", "tags", "createdAt", "updatedAt"})
     private List<TargetVO> targets;
 
-    @JsonIgnoreProperties({"tag", "tags", "informations", "createdAt", "updatedAt"})
+    @JsonIgnoreProperties({"tag", "tags", "information", "createdAt", "updatedAt"})
     private List<RuleVO> rules;
 
     private OffsetDateTime createdAt;
