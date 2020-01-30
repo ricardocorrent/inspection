@@ -1,6 +1,7 @@
-package br.com.inspection.userinformation;
+package br.com.inspection.item.information;
 
 import br.com.inspection.server.model.BaseVO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
@@ -17,8 +18,8 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@JsonPropertyOrder({"id", "title", "description", "createdAt", "updatedAt"})
-public class UserInformationVO extends ResourceSupport implements BaseVO {
+@JsonPropertyOrder({"id", "title", "description"})
+public class ItemInformationVO extends ResourceSupport implements BaseVO {
 
     @Mapping("id")
     @JsonProperty("id")
@@ -36,8 +37,10 @@ public class UserInformationVO extends ResourceSupport implements BaseVO {
     @Size(max = 150)
     private String description;
 
+    @JsonIgnore
     private OffsetDateTime createdAt;
 
+    @JsonIgnore
     private OffsetDateTime updatedAt;
 
 }

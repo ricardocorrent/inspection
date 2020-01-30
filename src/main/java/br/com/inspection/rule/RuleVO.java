@@ -1,6 +1,5 @@
 package br.com.inspection.rule;
 
-import br.com.inspection.item.ItemVO;
 import br.com.inspection.rule.information.RuleInformationVO;
 import br.com.inspection.server.model.BaseVO;
 import br.com.inspection.tag.TagVO;

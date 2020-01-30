@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -21,12 +22,14 @@ public class UserInformation extends PhysicalBaseEntity {
     @NotEmpty
     @NotBlank
     @Column(name = "title")
+    @Size(max = 100)
     private String title;
 
     @NotNull
     @NotEmpty
     @NotBlank
     @Column(name = "description")
+    @Size(max = 150)
     private String description;
 
 }
