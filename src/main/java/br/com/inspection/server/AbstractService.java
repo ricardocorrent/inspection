@@ -64,5 +64,4 @@ public abstract class AbstractService<T extends BaseModel, Z extends BaseVO> {
 
     public abstract Class<T> getEntityClazz();
 
-
 }
