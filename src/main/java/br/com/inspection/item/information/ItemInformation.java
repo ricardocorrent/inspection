@@ -1,4 +1,4 @@
-package br.com.inspection.rule.information;
+package br.com.inspection.item.information;
 
 import br.com.inspection.server.model.PhysicalBaseEntity;
 import lombok.Getter;
@@ -15,8 +15,8 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @Entity
-@Table(name = "rule_information")
-public class RuleInformation extends PhysicalBaseEntity {
+@Table(name = "item_information")
+public class ItemInformation extends PhysicalBaseEntity {
 
     @NotNull
     @NotEmpty
