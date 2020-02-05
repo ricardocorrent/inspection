@@ -1,5 +1,6 @@
 package br.com.inspection.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,9 @@ public class UserController {
     @Inject
     private UserService userService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping(path = "/{id}", produces = {"application/json", "application/xml"})
     public ResponseEntity<?> getUserById(@PathVariable("id") final UUID id) {
         final UserVO userVO = userService.findById(id);
@@ -35,5 +39,12 @@ public class UserController {
                 .status(HttpStatus.OK)
                 .body(userService.update(userVO));
     }
+
+    @GetMapping(path = "/all", produces = {"application/json", "application/xml"})
+    public ResponseEntity<?> getUsers() {
+        final Iterable<User> all = userRepository.findAll();
+        return ResponseEntity.ok(all);
+    }
+
 
 }
