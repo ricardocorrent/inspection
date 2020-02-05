@@ -1,5 +1,6 @@
 package br.com.inspection.inspection;
 
+import br.com.inspection.inspection.information.InspectionInformationVO;
 import br.com.inspection.server.model.BaseVO;
 import br.com.inspection.target.Target;
 import br.com.inspection.target.TargetVO;
@@ -20,11 +21,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
-@JsonPropertyOrder({"id", "title", "description", "draft", "syncQuantities", "note", "user", "target"})
+@JsonPropertyOrder({"id", "title", "description", "draft", "syncQuantities", "note", "information", "user", "target"})
 public class InspectionVO extends ResourceSupport implements BaseVO {
 
     @Mapping("id")
@@ -49,6 +51,9 @@ public class InspectionVO extends ResourceSupport implements BaseVO {
 
     @Size(max = 4000)
     private String note;
+
+    @Valid
+    private List<InspectionInformationVO> information;
 
     @JsonIgnoreProperties({"createdAt", "updatedAt"})
     private UserVO user;

@@ -1,5 +1,6 @@
 package br.com.inspection.inspection;
 
+import br.com.inspection.inspection.information.InspectionInformation;
 import br.com.inspection.server.model.PhysicalBaseEntity;
 import br.com.inspection.target.Target;
 import br.com.inspection.user.User;
@@ -9,6 +10,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Getter
 @Setter
@@ -42,4 +44,8 @@ public class Inspection extends PhysicalBaseEntity {
     @ManyToOne
     @JoinColumn(name = "target_id", nullable = false)
     private Target target;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "inspection_id", nullable = false)
+    private List<InspectionInformation> information;
 }
