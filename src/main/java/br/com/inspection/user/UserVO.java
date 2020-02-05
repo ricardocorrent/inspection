@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@JsonPropertyOrder({"id", "userName", "fullName", "informations", "createdAt", "updatedAt"})
+@JsonPropertyOrder({"id", "userName", "fullName", "information", "createdAt", "updatedAt"})
 public class UserVO extends ResourceSupport implements Serializable {
 
     @Mapping("id")
@@ -26,7 +26,7 @@ public class UserVO extends ResourceSupport implements Serializable {
 
     private String fullName;
 
-    private List<UserInformationVO> informations;
+    private List<UserInformationVO> information;
 
     private OffsetDateTime createdAt;
 

@@ -57,7 +57,7 @@ public class User implements UserDetails, Serializable {
     @JoinTable(name="user_information",
             joinColumns=@JoinColumn(name="user_id"),
             inverseJoinColumns=@JoinColumn(name="id"))
-    private List<UserInformation> informations;
+    private List<UserInformation> information;
 
     private OffsetDateTime createdAt;
 
@@ -190,11 +190,11 @@ public class User implements UserDetails, Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public List<UserInformation> getInformations() {
-        return informations;
+    public List<UserInformation> getInformation() {
+        return information;
     }
 
-    public void setInformations(final List<UserInformation> informations) {
-        this.informations = informations;
+    public void setInformation(final List<UserInformation> information) {
+        this.information = information;
     }
 }
